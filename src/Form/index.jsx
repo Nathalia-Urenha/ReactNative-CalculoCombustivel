@@ -13,22 +13,20 @@ export default function Form() {
   const [textButton, setTextButton] = useState(
     "Calcular qual é mais vantajoso"
   );
-  const [percAlcool, setPercAlcool] = useState(null);
-  const [percGasolina, setPercGasolina] = useState(null);
-  const [vantagem, setVantagem] = useState(null);
 
   async function calculaVantagem() {
-    setPercAlcool(Number(valorAlcool) / Number(consumoAlcool));
-    console.log(percAlcool);
-    setPercGasolina(Number(valorGasolina) / Number(consumoGasolina));
-    console.log(percGasolina);
-    if (percAlcool < percGasolina) {
-      setVantagem("Álcool");
-    }
-    if (percGasolina < percAlcool) {
-      setVantagem("Gasolina");
+    const alcool = Number(valorAlcool) / Number(consumoAlcool);
+    console.log(alcool);
+    const gasolina = Number(valorGasolina) / Number(consumoGasolina);
+    console.log(gasolina);
+
+    if (alcool < gasolina) {
+      setMensagemDesc("É mais vantajoso usar: Alcool");
+    } else if (gasolina < alcool) {
+      setMensagemDesc("É mais vantajoso usar: Gasolina");
     } else {
-      setVantagem("Empate");
+      setMensagemDesc("Empate!");
+      alert("Resultado: Você pode usar qualquer um dos dois!");
     }
   }
 
@@ -40,11 +38,13 @@ export default function Form() {
       consumoGasolina != null
     ) {
       calculaVantagem();
-      setMensagemDesc("É mais vantajoso usar: ");
+      setValorAlcool(null);
+      setValorGasolina(null);
+      setconsumoAlcool(null);
+      setconsumoGasolina(null);
       setTextButton("Calcular novamente");
       return;
     }
-    setVantagem(null);
     setTextButton("Calcular qual é mais vantajoso");
     setMensagemDesc(
       "Preencha os valores do alcool e gasolina por litro e o quantos km seu carro faz com 1L"
@@ -82,7 +82,7 @@ export default function Form() {
         keyboardType="numeric"
       />
       <Button onPress={validaCampos} title={textButton} />
-      <ResultadoVantagem mensagem={mensagemDesc} resultado={vantagem} />
+      <ResultadoVantagem mensagem={mensagemDesc} />
     </View>
   );
 }

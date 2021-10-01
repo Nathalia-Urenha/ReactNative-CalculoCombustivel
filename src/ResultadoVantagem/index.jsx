@@ -5,11 +5,7 @@ export default function ResultadoVantagem(props) {
   return (
     <View>
       <Text />
-      <Text>
-        {props.mensagem}
-
-        {props.vantagem}
-      </Text>
+      <Text>{props.mensagem}</Text>
     </View>
   );
 }
