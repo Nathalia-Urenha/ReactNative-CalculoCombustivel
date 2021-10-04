@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, TextInput, Button, TouchableOpacity } from "react-native";
 import ResultadoVantagem from "../ResultadoVantagem";
+import styles from "./style";
 
 export default function Form() {
   const [valorAlcool, setValorAlcool] = useState(null);
@@ -10,9 +11,7 @@ export default function Form() {
   const [mensagemDesc, setMensagemDesc] = useState(
     "Preencha os valores do alcool e gasolina por litro e o quantos km seu carro faz com 1L"
   );
-  const [textButton, setTextButton] = useState(
-    "Calcular qual é mais vantajoso"
-  );
+  const [textButton, setTextButton] = useState("Calcular Vantagem");
 
   async function calculaVantagem() {
     const alcool = Number(valorAlcool) / Number(consumoAlcool);
@@ -45,43 +44,60 @@ export default function Form() {
       setTextButton("Calcular novamente");
       return;
     }
-    setTextButton("Calcular qual é mais vantajoso");
+    setTextButton("Calcular Vantagem");
     setMensagemDesc(
       "Preencha os valores do alcool e gasolina por litro e o quantos km seu carro faz com 1L"
     );
   }
 
   return (
-    <View>
-      <Text>Valor do litro do álcool: </Text>
-      <TextInput
-        onChangeText={setValorAlcool}
-        value={valorAlcool}
-        placeholder="Ex: 4.50"
-        keyboardType="numeric"
-      />
-      <Text>Quantos km seu carro faz com 1L de álcool: </Text>
-      <TextInput
-        onChangeText={setconsumoAlcool}
-        value={consumoAlcool}
-        placeholder="Ex: 10"
-        keyboardType="numeric"
-      />
-      <Text>Valor do litro da Gasolina: </Text>
-      <TextInput
-        onChangeText={setValorGasolina}
-        value={valorGasolina}
-        placeholder="Ex: 6.50"
-        keyboardType="numeric"
-      />
-      <Text>Quantos km seu carro faz com 1L de Gasolina: </Text>
-      <TextInput
-        onChangeText={setconsumoGasolina}
-        value={consumoGasolina}
-        placeholder="Ex: 20"
-        keyboardType="numeric"
-      />
-      <Button onPress={validaCampos} title={textButton} />
+    <View style={styles.formContext}>
+      <View style={styles.form}>
+        <Text style={styles.formLabel}>Valor do litro do álcool: </Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setValorAlcool}
+          value={valorAlcool}
+          placeholder="Ex: 4.50"
+          keyboardType="numeric"
+        />
+        <Text style={styles.formLabel}>
+          Quantos km seu carro faz com 1L de álcool:{" "}
+        </Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setconsumoAlcool}
+          value={consumoAlcool}
+          placeholder="Ex: 10"
+          keyboardType="numeric"
+        />
+        <Text style={styles.formLabel}>Valor do litro da Gasolina: </Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setValorGasolina}
+          value={valorGasolina}
+          placeholder="Ex: 6.50"
+          keyboardType="numeric"
+        />
+        <Text style={styles.formLabel}>
+          Quantos km seu carro faz com 1L de Gasolina:{" "}
+        </Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setconsumoGasolina}
+          value={consumoGasolina}
+          placeholder="Ex: 20"
+          keyboardType="numeric"
+        />
+        <TouchableOpacity
+          style={styles.buttonCalculator}
+          onPress={() => {
+            validaCampos();
+          }}
+        >
+          <Text style={styles.textButtonCalculator}>{textButton}</Text>
+        </TouchableOpacity>
+      </View>
       <ResultadoVantagem mensagem={mensagemDesc} />
     </View>
   );

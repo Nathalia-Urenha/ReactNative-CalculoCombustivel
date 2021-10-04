@@ -5,7 +5,6 @@ import Form from "../Form";
 export default function Main() {
   return (
     <View>
-      <Text>Insira os dados abaixo:</Text>
       <Form />
     </View>
   );

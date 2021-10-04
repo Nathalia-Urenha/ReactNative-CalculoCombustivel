@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text } from "react-native";
+import styles from "./style";
 
 export default function Title() {
   return (
-    <View>
-      <Text>Qual combustível é mais vantajoso?</Text>
+    <View style={styles.boxTitle}>
+      <Text style={styles.textTitle}>Qual combustível é mais vantajoso?</Text>
     </View>
   );
 }
