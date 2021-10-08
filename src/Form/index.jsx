@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, Button, TouchableOpacity } from "react-native";
 import ResultadoVantagem from "../ResultadoVantagem";
 import styles from "./style";
-
+//form
 export default function Form() {
   const [valorAlcool, setValorAlcool] = useState(null);
   const [valorGasolina, setValorGasolina] = useState(null);
