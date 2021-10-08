@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text, ScrollView } from "react-native";
 import Form from "../Form";
 
 export default function Main() {
   return (
-    <View>
+    <ScrollView>
       <Form />
-    </View>
+    </ScrollView>
   );
 }

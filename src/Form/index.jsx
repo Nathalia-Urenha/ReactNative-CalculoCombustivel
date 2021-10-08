@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  TouchableOpacity,
+  Vibration,
+} from "react-native";
 import ResultadoVantagem from "../ResultadoVantagem";
 import styles from "./style";
 //form
@@ -12,6 +19,7 @@ export default function Form() {
     "Preencha os valores do alcool e gasolina por litro e o quantos km seu carro faz com 1L"
   );
   const [textButton, setTextButton] = useState("Calcular Vantagem");
+  const [mensagemErro, setMensagemErro] = useState("");
 
   async function calculaVantagem() {
     const alcool = Number(valorAlcool) / Number(consumoAlcool);
@@ -42,12 +50,15 @@ export default function Form() {
       setconsumoAlcool(null);
       setconsumoGasolina(null);
       setTextButton("Calcular novamente");
+      setMensagemErro(null);
       return;
     }
     setTextButton("Calcular Vantagem");
     setMensagemDesc(
       "Preencha os valores do alcool e gasolina por litro e o quantos km seu carro faz com 1L"
     );
+    setMensagemErro("Campo Obrigatório!");
+    Vibration.vibrate(1000);
   }
 
   return (
@@ -61,6 +72,7 @@ export default function Form() {
           placeholder="Ex: 4.50"
           keyboardType="numeric"
         />
+        <Text style={styles.textoMensagemErro}>{mensagemErro}</Text>
         <Text style={styles.formLabel}>
           Quantos km seu carro faz com 1L de álcool:{" "}
         </Text>
@@ -71,6 +83,7 @@ export default function Form() {
           placeholder="Ex: 10"
           keyboardType="numeric"
         />
+        <Text style={styles.textoMensagemErro}>{mensagemErro}</Text>
         <Text style={styles.formLabel}>Valor do litro da Gasolina: </Text>
         <TextInput
           style={styles.input}
@@ -79,6 +92,7 @@ export default function Form() {
           placeholder="Ex: 6.50"
           keyboardType="numeric"
         />
+        <Text style={styles.textoMensagemErro}>{mensagemErro}</Text>
         <Text style={styles.formLabel}>
           Quantos km seu carro faz com 1L de Gasolina:{" "}
         </Text>
@@ -89,6 +103,7 @@ export default function Form() {
           placeholder="Ex: 20"
           keyboardType="numeric"
         />
+        <Text style={styles.textoMensagemErro}>{mensagemErro}</Text>
         <TouchableOpacity
           style={styles.buttonCalculator}
           onPress={() => {

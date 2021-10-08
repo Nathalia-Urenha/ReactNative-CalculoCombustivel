@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f6f6f6",
     height: 40,
     margin: 12,
-    paddingLeft: 10,
+    paddingLeft: 20,
   },
   buttonCalculator: {
     borderRadius: 50,
@@ -39,10 +39,17 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 14,
     marginLeft: 12,
+    marginTop: 30,
   },
   textButtonCalculator: {
     fontSize: 20,
     color: "#ffffff",
+  },
+  textoMensagemErro: {
+    fontSize: 12,
+    color: "red",
+    fontWeight: "bold",
+    paddingLeft: 20,
   },
 });
 
